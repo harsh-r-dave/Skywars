@@ -18,6 +18,7 @@ var stage;
 var stats;
 var currentScene;
 var scene;
+var scoreboard;
 // Game Scenes
 var menu;
 var play;
@@ -67,6 +68,8 @@ function init() {
     createjs.Ticker.on("tick", gameLoop, this);
     // sets up our stats counting workflow
     setupStats();
+    // define scoreboard
+    scoreboard = new managers.Scoreboard();
     // set initial scene
     scene = config.Scene.MENU;
     changeScene();

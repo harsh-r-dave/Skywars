@@ -45,6 +45,14 @@ var objects;
         GameObject.prototype._reset = function (value) {
             this.x = value;
         };
+        // Getter Method to check collision flag of object
+        GameObject.prototype.getIsColliding = function () {
+            return this._isColliding;
+        };
+        // Setter Method to set the collision flag of the object - true or false
+        GameObject.prototype.setIsColliding = function (isColliding) {
+            this._isColliding = isColliding;
+        };
         // PUBLIC METHODS ++++++++++++++++++++++++++++++
         GameObject.prototype.update = function () {
             var boundValue = 0;

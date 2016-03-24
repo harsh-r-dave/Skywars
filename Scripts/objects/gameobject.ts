@@ -20,6 +20,7 @@ module objects {
         protected _rightBounds: number;
         protected _topBounds: number;
         protected _bottomBounds: number;
+        protected _isColliding: boolean;
 
         // PUBLIC INSTANCE VARIABLES
         public name: string;
@@ -57,6 +58,15 @@ module objects {
             this.x = value;
         }
 
+        // Getter Method to check collision flag of object
+        public getIsColliding(): boolean {
+            return this._isColliding;
+        }
+
+        // Setter Method to set the collision flag of the object - true or false
+        public setIsColliding(isColliding: boolean) {
+            this._isColliding = isColliding;
+        }
 
         // PUBLIC METHODS ++++++++++++++++++++++++++++++
         public update(): void {

@@ -29,6 +29,11 @@ var scenes;
         // PUBLIC METHODS +++++++++++++++++++++
         // Start Method
         Play.prototype.start = function () {
+            // reset scoreboard
+            scoreboard.setLives(5);
+            scoreboard.setScore(0);
+            console.log("Score: " + scoreboard.getScore());
+            console.log("Lives: " + scoreboard.getLives());
             // instantiate obstacles collection
             this._obstaclesCollection = new Array("Planet1", "Planet2", "Planet3", "Planet4", "Stone1", "Stone2");
             // set obstacles count
@@ -64,6 +69,12 @@ var scenes;
             this.addChild(this._player);
             // add collision manager to the scene
             this._collision = new managers.Collision(this._player);
+            // Score Label
+            this._scoreLabel = new objects.Label("Score: ", "40px Consolas", "#FFFF00", 5, 5, false);
+            this.addChild(this._scoreLabel);
+            // Lives Label
+            this._livesLabel = new objects.Label("Lives: ", "40px Consolas", "#FFFF00", 350, 5, false);
+            this.addChild(this._livesLabel);
             // add this scene to the global stage container
             stage.addChild(this);
         };
@@ -82,6 +93,12 @@ var scenes;
             });
             this._collision.check(this._star);
             this._star.update();
+            this._updateScore();
+        };
+        // method to update scoreboard
+        Play.prototype._updateScore = function () {
+            this._scoreLabel.text = "Score: " + scoreboard.getScore();
+            this._livesLabel.text = "Lives: " + scoreboard.getLives();
         };
         return Play;
     })(objects.Scene);
