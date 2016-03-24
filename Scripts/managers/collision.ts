@@ -51,7 +51,7 @@ module managers {
                         case "enemy":
                             object.visible = false;
                             createjs.Sound.play("Crash", 0, 0, 0, 0, 0.5, 0);
-                            scoreboard.addScore(100);
+                            scoreboard.removeLives(1);
                             break;
                         case "star":
                             object.visible = false;

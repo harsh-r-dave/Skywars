@@ -26,7 +26,7 @@ module objects {
 
         // PUBLIC METHODS
         public update(): void {
-            this.x -= 9;
+            this.x -= 15;
         }
         
         public setBulletPoisition(playerX: number, playerY: number): void {

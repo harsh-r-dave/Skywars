@@ -20,7 +20,7 @@ var objects;
         // PRIVATE METHODS
         // PUBLIC METHODS
         Bullet.prototype.update = function () {
-            this.x -= 9;
+            this.x -= 15;
         };
         Bullet.prototype.setBulletPoisition = function (playerX, playerY) {
             this.x = playerX;
