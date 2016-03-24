@@ -8,14 +8,14 @@
     Last Modified by: Harsh Dave, student, Centennial College
     
     Program Description: Play scene where gameplay takes action.
-    Revision History:
+    Revision History: space background added - Mar 24, 2016
 */
 
 // PLAY SCENE
 module scenes {
     export class Play extends objects.Scene {
         //PRIVATE INSTANCE VARIABLES ++++++++++++
-        private _playLabel: objects.Label;
+       private _space: objects.GameBackground;
         
         // CONSTRUCTOR ++++++++++++++++++++++
         constructor() {
@@ -26,15 +26,9 @@ module scenes {
         
         // Start Method
         public start(): void {
-
-
-            //Add Play Label
-            this._playLabel = new objects.Label(
-                "PLAY SCENE","60px Consolas", 
-                "#000000", 
-                config.Screen.CENTER_X,config.Screen.CENTER_Y, true);
-            this.addChild(this._playLabel);
-
+            // add space background image to the scene
+            this._space = new objects.GameBackground();
+            this.addChild(this._space);
 
             // add this scene to the global stage container
             stage.addChild(this);
@@ -42,7 +36,7 @@ module scenes {
 
         // PLAY Scene updates here
         public update(): void {
-
+            this._space.update();
         }
         
         

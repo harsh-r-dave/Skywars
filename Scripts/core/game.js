@@ -24,7 +24,7 @@ var play;
 var end;
 var assetData = [
     // Add your Assets here
-    { id: "Background", src: "../../Assets/images/background.png" },
+    { id: "Space", src: "../../Assets/images/background.png" },
     { id: "Bullet", src: "../../Assets/images/bullet.png" },
     { id: "Enemy1", src: "../../Assets/images/enemy1.png" },
     { id: "Enemy2", src: "../../Assets/images/enemy2.png" },
