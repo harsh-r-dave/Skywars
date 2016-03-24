@@ -41,6 +41,7 @@ var assetData = [
     { id: "Player", src: "../../Assets/images/player.png" },
     { id: "Stone1", src: "../../Assets/images/stone1.png" },
     { id: "Stone2", src: "../../Assets/images/stone2.png" },
+    { id: "Star", src: "../../Assets/images/star.png" },
     { id: "StartButton", src: "../../Assets/images/StartButton.png" }
 ];
 function preload() {

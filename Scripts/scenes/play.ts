@@ -10,6 +10,7 @@
     Program Description: Play scene where gameplay takes action.
     Revision History: space background added - Mar 24, 2016
                       obstacles added - Mar 24, 2016
+                      enemy added - Mar 24, 2016
 */
 
 // PLAY SCENE
@@ -17,9 +18,14 @@ module scenes {
     export class Play extends objects.Scene {
         //PRIVATE INSTANCE VARIABLES ++++++++++++
         private _space: objects.GameBackground;
+        
         private _obstacles: objects.Obstacles[];
         private _obstaclesCollection: string[];
         private _obstaclesCount: number;
+        
+        private _enemy: objects.Enemy[];
+        private _enemyCount: number;
+        private _enemyCollection: string[];
 
         // CONSTRUCTOR ++++++++++++++++++++++
         constructor() {
@@ -30,16 +36,23 @@ module scenes {
 
         // Start Method
         public start(): void {
-            // add space background image to the scene
-            this._space = new objects.GameBackground();
-            this.addChild(this._space);
-
             // instantiate obstacles collection
             this._obstaclesCollection = new Array("Planet1", "Planet2", "Planet3", "Planet4", "Stone1", "Stone2");
             // set obstacles count
             this._obstaclesCount = 2;
             // instantiate obstacles array
             this._obstacles = new Array<objects.Obstacles>();
+            
+            // instantiate enemy collection
+            this._enemyCollection = new Array("Enemy1","Enemy2","Enemy3","Enemy4","Enemy5","Enemy6","Enemy7","Enemy8");
+            // set enemy count
+            this._enemyCount = 4;
+            // instantiate enemy array
+            this._enemy = new Array<objects.Enemy>();
+            
+            // add space background image to the scene
+            this._space = new objects.GameBackground();
+            this.addChild(this._space);
 
             // add obstacle to the scene
             for (var obstacle: number = 0; obstacle < this._obstaclesCount; obstacle++) {
@@ -47,6 +60,14 @@ module scenes {
                 
                 this._obstacles[obstacle] = new objects.Obstacles(this._obstaclesCollection[randomObstacle]);
                 this.addChild(this._obstacles[obstacle]);
+            }
+            
+            // add enemy to the scene
+            for (var enemy: number = 0; enemy < this._enemyCount; enemy++) {
+                var randomEnemy = Math.floor(Math.random() * 8);
+                
+                this._enemy[enemy] = new objects.Enemy(this._enemyCollection[randomEnemy]);
+                this.addChild(this._enemy[enemy]);
             }
 
             // add this scene to the global stage container
@@ -59,6 +80,10 @@ module scenes {
             
             this._obstacles.forEach(obstacle => {
                 obstacle.update();    
+            });
+            
+             this._enemy.forEach(enemy => {
+                enemy.update();    
             });
         }
 

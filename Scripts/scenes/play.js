@@ -10,6 +10,7 @@
     Program Description: Play scene where gameplay takes action.
     Revision History: space background added - Mar 24, 2016
                       obstacles added - Mar 24, 2016
+                      enemy added - Mar 24, 2016
 */
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -28,20 +29,32 @@ var scenes;
         // PUBLIC METHODS +++++++++++++++++++++
         // Start Method
         Play.prototype.start = function () {
-            // add space background image to the scene
-            this._space = new objects.GameBackground();
-            this.addChild(this._space);
             // instantiate obstacles collection
             this._obstaclesCollection = new Array("Planet1", "Planet2", "Planet3", "Planet4", "Stone1", "Stone2");
             // set obstacles count
             this._obstaclesCount = 2;
             // instantiate obstacles array
             this._obstacles = new Array();
+            // instantiate enemy collection
+            this._enemyCollection = new Array("Enemy1", "Enemy2", "Enemy3", "Enemy4", "Enemy5", "Enemy6", "Enemy7", "Enemy8");
+            // set enemy count
+            this._enemyCount = 4;
+            // instantiate enemy array
+            this._enemy = new Array();
+            // add space background image to the scene
+            this._space = new objects.GameBackground();
+            this.addChild(this._space);
             // add obstacle to the scene
             for (var obstacle = 0; obstacle < this._obstaclesCount; obstacle++) {
                 var randomObstacle = Math.floor(Math.random() * 6);
                 this._obstacles[obstacle] = new objects.Obstacles(this._obstaclesCollection[randomObstacle]);
                 this.addChild(this._obstacles[obstacle]);
+            }
+            // add enemy to the scene
+            for (var enemy = 0; enemy < this._enemyCount; enemy++) {
+                var randomEnemy = Math.floor(Math.random() * 8);
+                this._enemy[enemy] = new objects.Enemy(this._enemyCollection[randomEnemy]);
+                this.addChild(this._enemy[enemy]);
             }
             // add this scene to the global stage container
             stage.addChild(this);
@@ -51,6 +64,9 @@ var scenes;
             this._space.update();
             this._obstacles.forEach(function (obstacle) {
                 obstacle.update();
+            });
+            this._enemy.forEach(function (enemy) {
+                enemy.update();
             });
         };
         return Play;
