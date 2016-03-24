@@ -27,27 +27,31 @@ var menu: scenes.Menu;
 var play: scenes.Play;
 var end: scenes.End;
 
-var assetData:objects.Asset[] = [
+var assetData: objects.Asset[] = [
     // Add your Assets here
-    {id: "Space", src:"../../Assets/images/background.png"},
-    {id: "Bullet", src:"../../Assets/images/bullet.png"},
-    {id: "Enemy1", src:"../../Assets/images/enemy1.png"},
-    {id: "Enemy2", src:"../../Assets/images/enemy2.png"},
-    {id: "Enemy3", src:"../../Assets/images/enemy3.png"},
-    {id: "Enemy4", src:"../../Assets/images/enemy4.png"},
-    {id: "Enemy5", src:"../../Assets/images/enemy5.png"},
-    {id: "Enemy6", src:"../../Assets/images/enemy6.png"},
-    {id: "Enemy7", src:"../../Assets/images/enemy7.png"},
-    {id: "Enemy8", src:"../../Assets/images/enemy8.png"},
-    {id: "Planet1", src:"../../Assets/images/planet1.png"},
-    {id: "Planet2", src:"../../Assets/images/planet2.png"},
-    {id: "Planet3", src:"../../Assets/images/planet3.png"},
-    {id: "Planet4", src:"../../Assets/images/planet4.png"},
-    {id: "Player", src:"../../Assets/images/player.png"},
-    {id: "Stone1", src:"../../Assets/images/stone1.png"},
-    {id: "Stone2", src:"../../Assets/images/stone2.png"},
-    {id: "Star", src:"../../Assets/images/star.png"},
-    {id: "StartButton", src:"../../Assets/images/StartButton.png"}
+    { id: "Space", src: "../../Assets/images/background.png" },
+    { id: "Bullet", src: "../../Assets/images/bullet.png" },
+    { id: "Enemy1", src: "../../Assets/images/enemy1.png" },
+    { id: "Enemy2", src: "../../Assets/images/enemy2.png" },
+    { id: "Enemy3", src: "../../Assets/images/enemy3.png" },
+    { id: "Enemy4", src: "../../Assets/images/enemy4.png" },
+    { id: "Enemy5", src: "../../Assets/images/enemy5.png" },
+    { id: "Enemy6", src: "../../Assets/images/enemy6.png" },
+    { id: "Enemy7", src: "../../Assets/images/enemy7.png" },
+    { id: "Enemy8", src: "../../Assets/images/enemy8.png" },
+    { id: "Planet1", src: "../../Assets/images/planet1.png" },
+    { id: "Planet2", src: "../../Assets/images/planet2.png" },
+    { id: "Planet3", src: "../../Assets/images/planet3.png" },
+    { id: "Planet4", src: "../../Assets/images/planet4.png" },
+    { id: "Player", src: "../../Assets/images/player.png" },
+    { id: "Stone1", src: "../../Assets/images/stone1.png" },
+    { id: "Stone2", src: "../../Assets/images/stone2.png" },
+    { id: "Star", src: "../../Assets/images/star.png" },
+    { id: "Shoot", src: "../../Assets/audio/Shoot.mp3" },
+    { id: "Engine", src: "../../Assets/audio/Spaceship.mp3" },
+    { id: "Collect", src: "../../Assets/audio/Collect.mp3" },
+    { id: "Crash", src: "../../Assets/audio/Crash.mp3" },
+    { id: "StartButton", src: "../../Assets/images/StartButton.png" }
 ];
 
 function preload() {
@@ -60,22 +64,22 @@ function preload() {
 function init(): void {
     // create a reference the HTML canvas Element
     canvas = document.getElementById("canvas");
-    
+
     // create our main display list container
     stage = new createjs.Stage(canvas);
-    
+
     // Enable mouse events
     stage.enableMouseOver(20);
-    
+
     // set the framerate to 60 frames per second
     createjs.Ticker.setFPS(config.Game.FPS);
-    
+
     // create an event listener to count off frames
     createjs.Ticker.on("tick", gameLoop, this);
-    
+
     // sets up our stats counting workflow
-    setupStats(); 
-    
+    setupStats();
+
     // set initial scene
     scene = config.Scene.MENU;
     changeScene();
@@ -84,14 +88,14 @@ function init(): void {
 // Main Game Loop function that handles what happens each "tick" or frame
 function gameLoop(event: createjs.Event): void {
     // start collecting stats for this frame
-    stats.begin(); 
-    
+    stats.begin();
+
     // calling State's update method
-    currentScene.update(); 
-    
+    currentScene.update();
+
     // redraw/refresh stage every frame
     stage.update();
-    
+
     // stop collecting stats for this frame
     stats.end();
 }
@@ -108,7 +112,7 @@ function setupStats(): void {
 
 // Finite State Machine used to change Scenes
 function changeScene(): void {
-    
+
     // Launch various scenes
     switch (scene) {
         case config.Scene.MENU:

@@ -4,6 +4,7 @@ module objects {
         // PRIVATE INSTANCE VARIABLES
         private _topBounds: number;
         private _bottomBounds: number;
+        private _engineSound: createjs.AbstractSoundInstance;
 
         // PUBLIC INSTANCE VARIABLES
         public width: number;
@@ -22,6 +23,8 @@ module objects {
             this._bottomBounds = config.Screen.HEIGHT - (this.height * 0.5);
 
             this.x = 580;
+            
+            this._engineSound = createjs.Sound.play("Engine", 0, 0, 0, -1, 1, 0);
         }
 
         // PRIVATE METHODS

@@ -17,6 +17,7 @@ var objects;
             this._topBounds = this.height * 0.5;
             this._bottomBounds = config.Screen.HEIGHT - (this.height * 0.5);
             this.x = 580;
+            this._engineSound = createjs.Sound.play("Engine", 0, 0, 0, -1, 1, 0);
         }
         // PRIVATE METHODS
         Player.prototype._checkBounds = function () {

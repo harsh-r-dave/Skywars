@@ -42,6 +42,10 @@ var assetData = [
     { id: "Stone1", src: "../../Assets/images/stone1.png" },
     { id: "Stone2", src: "../../Assets/images/stone2.png" },
     { id: "Star", src: "../../Assets/images/star.png" },
+    { id: "Shoot", src: "../../Assets/audio/Shoot.mp3" },
+    { id: "Engine", src: "../../Assets/audio/Spaceship.mp3" },
+    { id: "Collect", src: "../../Assets/audio/Collect.mp3" },
+    { id: "Crash", src: "../../Assets/audio/Crash.mp3" },
     { id: "StartButton", src: "../../Assets/images/StartButton.png" }
 ];
 function preload() {

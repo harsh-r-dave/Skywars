@@ -37,16 +37,19 @@ var managers;
                 if (object.name === "obstacles") {
                     object.visible = false;
                     console.log("obstacles hit!");
+                    createjs.Sound.play("Crash", 0, 0, 0, 0, 1, 0);
                 }
                 // check if it's a battery hit
                 if (object.name === "enemy") {
                     object.visible = false;
                     console.log("enemy hit!");
+                    createjs.Sound.play("Crash", 0, 0, 0, 0, 1, 0);
                 }
                 // check if it's a star hit
                 if (object.name === "star") {
                     object.visible = false;
                     console.log("star hit!");
+                    createjs.Sound.play("Collect", 0, 0, 0, 0, 1, 0);
                 }
             }
         };
