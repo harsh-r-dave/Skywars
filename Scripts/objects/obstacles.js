@@ -13,6 +13,7 @@ var objects;
         function Obstacles(obstacleType) {
             _super.call(this, obstacleType);
             this._reset(this._leftBounds);
+            this.name = "obstacles";
         }
         // PRIVATE METHODS ++++++++++++++++++++++++++++
         Obstacles.prototype._checkBounds = function (value) {
@@ -23,6 +24,7 @@ var objects;
         };
         // reset the obstacles offscreen
         Obstacles.prototype._reset = function (value) {
+            this.visible = true;
             // behaviour of objects
             this._speed.x = Math.floor(Math.random() * 5) + 2;
             this._speed.y = Math.floor(Math.random() * 4) - 2;

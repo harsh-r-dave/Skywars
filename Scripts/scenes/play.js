@@ -59,17 +59,22 @@ var scenes;
             // add player to the scene
             this._player = new objects.Player();
             this.addChild(this._player);
+            // add collision manager to the scene
+            this._collision = new managers.Collision(this._player);
             // add this scene to the global stage container
             stage.addChild(this);
         };
         // PLAY Scene updates here
         Play.prototype.update = function () {
+            var _this = this;
             this._space.update();
             this._player.update();
             this._obstacles.forEach(function (obstacle) {
+                _this._collision.check(obstacle);
                 obstacle.update();
             });
             this._enemy.forEach(function (enemy) {
+                _this._collision.check(enemy);
                 enemy.update();
             });
         };

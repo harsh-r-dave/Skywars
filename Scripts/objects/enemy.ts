@@ -8,6 +8,7 @@ module objects {
             super(enemyType);
 
             this._reset(this._leftBounds);
+            this.name = "enemy";
         }
 
         // PRIVATE METHODS ++++++++++++++++++++++++++++
@@ -20,6 +21,7 @@ module objects {
 
         // reset the obstacles offscreen
         protected _reset(value: number): void {
+            this.visible = true;
             // behaviour of objects
             this._speed.x = Math.floor(Math.random() * 5) + 5;
             

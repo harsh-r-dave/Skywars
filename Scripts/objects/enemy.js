@@ -13,6 +13,7 @@ var objects;
         function Enemy(enemyType) {
             _super.call(this, enemyType);
             this._reset(this._leftBounds);
+            this.name = "enemy";
         }
         // PRIVATE METHODS ++++++++++++++++++++++++++++
         Enemy.prototype._checkBounds = function (value) {
@@ -23,6 +24,7 @@ var objects;
         };
         // reset the obstacles offscreen
         Enemy.prototype._reset = function (value) {
+            this.visible = true;
             // behaviour of objects
             this._speed.x = Math.floor(Math.random() * 5) + 5;
             // location of objects

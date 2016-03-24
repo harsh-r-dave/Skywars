@@ -10,12 +10,12 @@ var objects;
         __extends(Player, _super);
         function Player() {
             _super.call(this, assets.getResult("Player"));
-            this._width = this.getBounds().width;
-            this._height = this.getBounds().height;
-            this.regX = this._width * 0.5;
-            this.regY = this._height * 0.5;
-            this._topBounds = this._height * 0.5;
-            this._bottomBounds = config.Screen.HEIGHT - (this._height * 0.5);
+            this.width = this.getBounds().width;
+            this.height = this.getBounds().height;
+            this.regX = this.width * 0.5;
+            this.regY = this.height * 0.5;
+            this._topBounds = this.height * 0.5;
+            this._bottomBounds = config.Screen.HEIGHT - (this.height * 0.5);
             this.x = 580;
         }
         // PRIVATE METHODS

@@ -1,22 +1,25 @@
 module objects {
     // PLAYER CLASS ++++++++++++++++++++++++++++++
     export class Player extends createjs.Bitmap {
-        private _width: number;
-        private _height: number;
+        // PRIVATE INSTANCE VARIABLES
         private _topBounds: number;
         private _bottomBounds: number;
 
+        // PUBLIC INSTANCE VARIABLES
+        public width: number;
+        public height: number;
+        
         constructor() {
             super(assets.getResult("Player"));
 
-            this._width = this.getBounds().width;
-            this._height = this.getBounds().height;
+            this.width = this.getBounds().width;
+            this.height = this.getBounds().height;
 
-            this.regX = this._width * 0.5;
-            this.regY = this._height * 0.5;
+            this.regX = this.width * 0.5;
+            this.regY = this.height * 0.5;
 
-            this._topBounds = this._height * 0.5;
-            this._bottomBounds = config.Screen.HEIGHT - (this._height * 0.5);
+            this._topBounds = this.height * 0.5;
+            this._bottomBounds = config.Screen.HEIGHT - (this.height * 0.5);
 
             this.x = 580;
         }
