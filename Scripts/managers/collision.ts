@@ -46,19 +46,16 @@ module managers {
                         case "obstacles":
                             object.visible = false;
                             createjs.Sound.play("Crash", 0, 0, 0, 0, 0.5, 0);
-                            console.log("obstacles hit!");
                             scoreboard.removeLives(1);
                             break;
                         case "enemy":
                             object.visible = false;
                             createjs.Sound.play("Crash", 0, 0, 0, 0, 0.5, 0);
-                            console.log("switch battery hit!");
                             scoreboard.addScore(100);
                             break;
                         case "star":
                             object.visible = false;
                             createjs.Sound.play("Collect", 0, 0, 0, 0, 0.5, 0);
-                            console.log("Star hit!");
                             scoreboard.addLives(1);
                             break;
                     }

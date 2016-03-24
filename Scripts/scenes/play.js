@@ -67,6 +67,11 @@ var scenes;
             // add player to the scene
             this._player = new objects.Player();
             this.addChild(this._player);
+            // add bullet to the scene
+            this._bullet = new objects.Bullet();
+            this.addChild(this._bullet);
+            // set bullet location
+            this._bullet.setBulletPoisition(this._player.x, this._player.y);
             // add collision manager to the scene
             this._collision = new managers.Collision(this._player);
             // Score Label
@@ -93,6 +98,13 @@ var scenes;
             });
             this._collision.check(this._star);
             this._star.update();
+            // update bullet
+            if (this._bullet.x > 0) {
+                this._bullet.update();
+            }
+            else {
+                this._bullet.setBulletPoisition(this._player.x, this._player.y);
+            }
             this._updateScore();
             // check if life becomes 0
             if (scoreboard.getLives() < 1) {

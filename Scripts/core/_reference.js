@@ -10,6 +10,7 @@
 /// <reference path="../objects/enemy.ts" />
 /// <reference path="../objects/star.ts" />
 /// <reference path="../objects/player.ts" />
+/// <reference path="../objects/bullet.ts" />
 /// <reference path="../managers/collision.ts" />
 /// <reference path="../managers/scoreboard.ts" />
 /// <reference path="../scenes/end.ts" />
