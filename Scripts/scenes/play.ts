@@ -146,10 +146,12 @@ module scenes {
                             object.visible = false;         // make enemy invisible
                             this._enemy[index].x = 650;     // put enemy out of the scene
                             scoreboard.addScore(100);       // update scoreboard
+                            createjs.Sound.play("Crash", 0, 0, 0, 0, 0.5, 0);
                             break;
                         case "star":
                             object.visible = false;         // make star invisible
                             this._star.x = 650;             // put star out of the scene
+                            createjs.Sound.play("Crash", 0, 0, 0, 0, 0.5, 0);
                             break;
                     }
                     object.setIsCollidingBullet(true);

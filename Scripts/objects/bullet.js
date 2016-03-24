@@ -25,6 +25,7 @@ var objects;
         Bullet.prototype.setBulletPoisition = function (playerX, playerY) {
             this.x = playerX;
             this.y = playerY;
+            createjs.Sound.play("Shoot");
         };
         return Bullet;
     })(createjs.Bitmap);
