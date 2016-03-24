@@ -31,15 +31,27 @@ var scenes;
             // add space background image to the scene
             this._space = new objects.GameBackground();
             this.addChild(this._space);
-            this._obstacles = new objects.Obstacles();
-            this.addChild(this._obstacles);
+            // instantiate obstacles collection
+            this._obstaclesCollection = new Array("Planet1", "Planet2", "Planet3", "Planet4", "Stone1", "Stone2");
+            // set obstacles count
+            this._obstaclesCount = 2;
+            // instantiate obstacles array
+            this._obstacles = new Array();
+            // add obstacle to the scene
+            for (var obstacle = 0; obstacle < this._obstaclesCount; obstacle++) {
+                var randomObstacle = Math.floor(Math.random() * 6);
+                this._obstacles[obstacle] = new objects.Obstacles(this._obstaclesCollection[randomObstacle]);
+                this.addChild(this._obstacles[obstacle]);
+            }
             // add this scene to the global stage container
             stage.addChild(this);
         };
         // PLAY Scene updates here
         Play.prototype.update = function () {
             this._space.update();
-            this._obstacles.update();
+            this._obstacles.forEach(function (obstacle) {
+                obstacle.update();
+            });
         };
         return Play;
     })(objects.Scene);

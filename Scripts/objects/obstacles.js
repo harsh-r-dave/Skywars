@@ -10,8 +10,8 @@ var objects;
         __extends(Obstacles, _super);
         // PRIVATE INSTANCE VARIABLES +++++++++++++++++
         // CONSTRUCTOR METHOD +++++++++++++++++++++++++
-        function Obstacles() {
-            _super.call(this, "Planet1");
+        function Obstacles(obstacleType) {
+            _super.call(this, obstacleType);
             this._reset(this._leftBounds);
         }
         // PRIVATE METHODS ++++++++++++++++++++++++++++

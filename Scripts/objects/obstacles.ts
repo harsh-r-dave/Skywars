@@ -4,8 +4,8 @@ module objects {
         // PRIVATE INSTANCE VARIABLES +++++++++++++++++
 
         // CONSTRUCTOR METHOD +++++++++++++++++++++++++
-        constructor() {
-            super("Planet1");
+        constructor(obstacleType: string) {
+            super(obstacleType);
 
             this._reset(this._leftBounds);
         }

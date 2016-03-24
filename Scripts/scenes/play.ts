@@ -16,24 +16,38 @@
 module scenes {
     export class Play extends objects.Scene {
         //PRIVATE INSTANCE VARIABLES ++++++++++++
-       private _space: objects.GameBackground;
-       private _obstacles: objects.Obstacles;
-        
+        private _space: objects.GameBackground;
+        private _obstacles: objects.Obstacles[];
+        private _obstaclesCollection: string[];
+        private _obstaclesCount: number;
+
         // CONSTRUCTOR ++++++++++++++++++++++
         constructor() {
             super();
         }
-        
+
         // PUBLIC METHODS +++++++++++++++++++++
-        
+
         // Start Method
         public start(): void {
             // add space background image to the scene
             this._space = new objects.GameBackground();
             this.addChild(this._space);
-            
-            this._obstacles = new objects.Obstacles();
-            this.addChild(this._obstacles);
+
+            // instantiate obstacles collection
+            this._obstaclesCollection = new Array("Planet1", "Planet2", "Planet3", "Planet4", "Stone1", "Stone2");
+            // set obstacles count
+            this._obstaclesCount = 2;
+            // instantiate obstacles array
+            this._obstacles = new Array<objects.Obstacles>();
+
+            // add obstacle to the scene
+            for (var obstacle: number = 0; obstacle < this._obstaclesCount; obstacle++) {
+                var randomObstacle = Math.floor(Math.random() * 6);
+                
+                this._obstacles[obstacle] = new objects.Obstacles(this._obstaclesCollection[randomObstacle]);
+                this.addChild(this._obstacles[obstacle]);
+            }
 
             // add this scene to the global stage container
             stage.addChild(this);
@@ -42,11 +56,14 @@ module scenes {
         // PLAY Scene updates here
         public update(): void {
             this._space.update();
-            this._obstacles.update();
+            
+            this._obstacles.forEach(obstacle => {
+                obstacle.update();    
+            });
         }
-        
-        
+
+
         //EVENT HANDLERS ++++++++++++++++++++
-        
+
     }
 }
