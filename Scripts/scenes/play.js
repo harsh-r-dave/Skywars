@@ -56,6 +56,9 @@ var scenes;
                 this._enemy[enemy] = new objects.Enemy(this._enemyCollection[randomEnemy]);
                 this.addChild(this._enemy[enemy]);
             }
+            // add star to the scene
+            this._star = new objects.Star();
+            this.addChild(this._star);
             // add player to the scene
             this._player = new objects.Player();
             this.addChild(this._player);
@@ -77,6 +80,8 @@ var scenes;
                 _this._collision.check(enemy);
                 enemy.update();
             });
+            this._collision.check(this._star);
+            this._star.update();
         };
         return Play;
     })(objects.Scene);

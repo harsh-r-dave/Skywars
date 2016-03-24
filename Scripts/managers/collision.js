@@ -43,6 +43,11 @@ var managers;
                     object.visible = false;
                     console.log("enemy hit!");
                 }
+                // check if it's a star hit
+                if (object.name === "star") {
+                    object.visible = false;
+                    console.log("star hit!");
+                }
             }
         };
         return Collision;

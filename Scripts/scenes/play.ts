@@ -28,6 +28,7 @@ module scenes {
         private _enemyCollection: string[];
         
         private _player: objects.Player;
+        private _star: objects.Star;
         
         private _collision: managers.Collision;
 
@@ -73,6 +74,10 @@ module scenes {
                 this._enemy[enemy] = new objects.Enemy(this._enemyCollection[randomEnemy]);
                 this.addChild(this._enemy[enemy]);
             }
+            
+            // add star to the scene
+            this._star = new objects.Star();
+            this.addChild(this._star);
 
             // add player to the scene
             this._player = new objects.Player();
@@ -99,6 +104,9 @@ module scenes {
                  this._collision.check(enemy);
                 enemy.update();    
             });
+            
+            this._collision.check(this._star);
+            this._star.update();
         }
 
 
