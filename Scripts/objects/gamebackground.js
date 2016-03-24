@@ -11,7 +11,7 @@ var objects;
         // CONSTRUCTOR ++++++++++++++++++++++++
         function GameBackground() {
             _super.call(this, "Space");
-            this._speed.x = 5; // space speed
+            this._speed.x = 4; // space speed
             this._reset(-1360);
             //this._reset(0);   // right to left
         }

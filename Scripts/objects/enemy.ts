@@ -21,7 +21,7 @@ module objects {
         // reset the obstacles offscreen
         protected _reset(value: number): void {
             // behaviour of objects
-            this._speed.x = Math.floor(Math.random() * 5) + 2;
+            this._speed.x = Math.floor(Math.random() * 5) + 5;
             
             // location of objects
             this.y = Math.floor(Math.random() * this._bottomBounds);

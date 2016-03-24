@@ -56,12 +56,16 @@ var scenes;
                 this._enemy[enemy] = new objects.Enemy(this._enemyCollection[randomEnemy]);
                 this.addChild(this._enemy[enemy]);
             }
+            // add player to the scene
+            this._player = new objects.Player();
+            this.addChild(this._player);
             // add this scene to the global stage container
             stage.addChild(this);
         };
         // PLAY Scene updates here
         Play.prototype.update = function () {
             this._space.update();
+            this._player.update();
             this._obstacles.forEach(function (obstacle) {
                 obstacle.update();
             });

@@ -26,6 +26,8 @@ module scenes {
         private _enemy: objects.Enemy[];
         private _enemyCount: number;
         private _enemyCollection: string[];
+        
+        private _player: objects.Player;
 
         // CONSTRUCTOR ++++++++++++++++++++++
         constructor() {
@@ -70,6 +72,10 @@ module scenes {
                 this.addChild(this._enemy[enemy]);
             }
 
+            // add player to the scene
+            this._player = new objects.Player();
+            this.addChild(this._player);
+            
             // add this scene to the global stage container
             stage.addChild(this);
         }
@@ -77,6 +83,7 @@ module scenes {
         // PLAY Scene updates here
         public update(): void {
             this._space.update();
+            this._player.update();
             
             this._obstacles.forEach(obstacle => {
                 obstacle.update();    

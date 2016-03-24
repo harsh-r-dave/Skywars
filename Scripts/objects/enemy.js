@@ -24,7 +24,7 @@ var objects;
         // reset the obstacles offscreen
         Enemy.prototype._reset = function (value) {
             // behaviour of objects
-            this._speed.x = Math.floor(Math.random() * 5) + 2;
+            this._speed.x = Math.floor(Math.random() * 5) + 5;
             // location of objects
             this.y = Math.floor(Math.random() * this._bottomBounds);
             this.x = value;
