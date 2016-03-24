@@ -21,6 +21,7 @@ module objects {
         protected _topBounds: number;
         protected _bottomBounds: number;
         protected _isColliding: boolean;
+        protected _isCollidingBullet: boolean;
 
         // PUBLIC INSTANCE VARIABLES
         public name: string;
@@ -66,6 +67,16 @@ module objects {
         // Setter Method to set the collision flag of the object - true or false
         public setIsColliding(isColliding: boolean) {
             this._isColliding = isColliding;
+        }
+        
+        // BULLET Getter Method to check collision flag of object
+        public getIsCollidingBullet(): boolean {
+            return this._isCollidingBullet;
+        }
+
+        // BULLET Setter Method to set the collision flag of the object - true or false
+        public setIsCollidingBullet(isCollidingBullet: boolean) {
+            this._isCollidingBullet = isCollidingBullet;
         }
 
         // PUBLIC METHODS ++++++++++++++++++++++++++++++

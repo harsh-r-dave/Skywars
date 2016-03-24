@@ -11,6 +11,7 @@
     Revision History: space background added - Mar 24, 2016
                       obstacles added - Mar 24, 2016
                       enemy added - Mar 24, 2016
+                      bullet colider added - Mar 24, 2016
 */
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -83,21 +84,67 @@ var scenes;
             // add this scene to the global stage container
             stage.addChild(this);
         };
+        // method to find distance between two points
+        Play.prototype.distance = function (startPoint, endPoint) {
+            return Math.sqrt(Math.pow((endPoint.x - startPoint.x), 2) + Math.pow(endPoint.y - startPoint.y, 2));
+        };
+        // method to check which objects are colliding with bullet
+        Play.prototype.checkBulletCollision = function (object, index) {
+            var startPoint = new createjs.Point();
+            var endPoint = new createjs.Point();
+            var playerHalfHeight = this._bullet.height * 0.5;
+            var objectHalfHeight = object.height * 0.5;
+            var minimumDistance = playerHalfHeight + objectHalfHeight;
+            startPoint.x = this._bullet.x;
+            startPoint.y = this._bullet.y;
+            endPoint.x = object.centerX + object.x;
+            endPoint.y = object.centerY + object.y;
+            /* check if the distance between the bullet and
+              the other object is less than the minimum distance */
+            if (this.distance(startPoint, endPoint) < minimumDistance) {
+                if (object.getIsCollidingBullet() == false) {
+                    switch (object.name) {
+                        case "obstacles":
+                            break;
+                        case "enemy":
+                            object.visible = false; // make enemy invisible
+                            this._enemy[index].x = 650; // put enemy out of the scene
+                            scoreboard.addScore(100); // update scoreboard
+                            break;
+                        case "star":
+                            object.visible = false; // make star invisible
+                            this._star.x = 650; // put star out of the scene
+                            break;
+                    }
+                    object.setIsCollidingBullet(true);
+                }
+            }
+            else {
+                object.setIsCollidingBullet(false);
+            }
+        };
         // PLAY Scene updates here
         Play.prototype.update = function () {
             var _this = this;
-            this._space.update();
-            this._player.update();
+            this._space.update(); // update background
+            this._player.update(); // update player
+            // check if obstacles are colliding with player and update it
             this._obstacles.forEach(function (obstacle) {
                 _this._collision.check(obstacle);
                 obstacle.update();
             });
+            // check if enemy is colliding with bullet
+            for (var enemy = 0; enemy < this._enemyCount; enemy++) {
+                this.checkBulletCollision(this._enemy[enemy], enemy);
+            }
+            // check if enemy is colliding with player and update it
             this._enemy.forEach(function (enemy) {
                 _this._collision.check(enemy);
                 enemy.update();
             });
-            this._collision.check(this._star);
-            this._star.update();
+            this._collision.check(this._star); // check if star is colliding with player
+            this.checkBulletCollision(this._star, null); // check if star is colliding with bullet
+            this._star.update(); // update star
             // update bullet
             if (this._bullet.x > 0) {
                 this._bullet.update();

@@ -53,6 +53,14 @@ var objects;
         GameObject.prototype.setIsColliding = function (isColliding) {
             this._isColliding = isColliding;
         };
+        // BULLET Getter Method to check collision flag of object
+        GameObject.prototype.getIsCollidingBullet = function () {
+            return this._isCollidingBullet;
+        };
+        // BULLET Setter Method to set the collision flag of the object - true or false
+        GameObject.prototype.setIsCollidingBullet = function (isCollidingBullet) {
+            this._isCollidingBullet = isCollidingBullet;
+        };
         // PUBLIC METHODS ++++++++++++++++++++++++++++++
         GameObject.prototype.update = function () {
             var boundValue = 0;

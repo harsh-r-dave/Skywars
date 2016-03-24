@@ -12,6 +12,7 @@
 /// <reference path="../objects/player.ts" />
 /// <reference path="../objects/bullet.ts" />
 /// <reference path="../managers/collision.ts" />
+/// <reference path="../managers/bulletcollision.ts" />
 /// <reference path="../managers/scoreboard.ts" />
 /// <reference path="../scenes/end.ts" />
 /// <reference path="../scenes/play.ts" />

@@ -11,6 +11,7 @@
     Revision History: space background added - Mar 24, 2016
                       obstacles added - Mar 24, 2016
                       enemy added - Mar 24, 2016
+                      bullet colider added - Mar 24, 2016
 */
 
 // PLAY SCENE
@@ -97,7 +98,7 @@ module scenes {
             this._bullet = new objects.Bullet();
             this.addChild(this._bullet);
             // set bullet location
-             this._bullet.setBulletPoisition(this._player.x, this._player.y);
+            this._bullet.setBulletPoisition(this._player.x, this._player.y);
 
             // add collision manager to the scene
             this._collision = new managers.Collision(this._player);
@@ -114,23 +115,76 @@ module scenes {
             stage.addChild(this);
         }
 
+
+        // method to find distance between two points
+        public distance(startPoint: createjs.Point, endPoint: createjs.Point): number {
+            return Math.sqrt(Math.pow((endPoint.x - startPoint.x), 2) + Math.pow(endPoint.y - startPoint.y, 2))
+        }
+        // method to check which objects are colliding with bullet
+        public checkBulletCollision(object: objects.GameObject, index: number) {
+            var startPoint: createjs.Point = new createjs.Point();
+            var endPoint: createjs.Point = new createjs.Point();
+            var playerHalfHeight: number = this._bullet.height * 0.5;
+            var objectHalfHeight: number = object.height * 0.5;
+            var minimumDistance: number = playerHalfHeight + objectHalfHeight;
+
+            startPoint.x = this._bullet.x;
+            startPoint.y = this._bullet.y;
+
+            endPoint.x = object.centerX + object.x;
+            endPoint.y = object.centerY + object.y;
+
+
+            /* check if the distance between the bullet and 
+              the other object is less than the minimum distance */
+            if (this.distance(startPoint, endPoint) < minimumDistance) {
+                if (object.getIsCollidingBullet() == false) {
+                    switch (object.name) {
+                        case "obstacles":
+                            break;
+                        case "enemy":
+                            object.visible = false;         // make enemy invisible
+                            this._enemy[index].x = 650;     // put enemy out of the scene
+                            scoreboard.addScore(100);       // update scoreboard
+                            break;
+                        case "star":
+                            object.visible = false;         // make star invisible
+                            this._star.x = 650;             // put star out of the scene
+                            break;
+                    }
+                    object.setIsCollidingBullet(true);
+                }
+            }
+            else {
+                object.setIsCollidingBullet(false);
+            }
+        }
+
         // PLAY Scene updates here
         public update(): void {
-            this._space.update();
-            this._player.update();
-
+            this._space.update();       // update background
+            this._player.update();      // update player
+            
+            // check if obstacles are colliding with player and update it
             this._obstacles.forEach(obstacle => {
                 this._collision.check(obstacle);
                 obstacle.update();
             });
 
+            // check if enemy is colliding with bullet
+            for (var enemy = 0; enemy < this._enemyCount; enemy++) {
+                this.checkBulletCollision(this._enemy[enemy], enemy);
+            }
+            
+            // check if enemy is colliding with player and update it
             this._enemy.forEach(enemy => {
                 this._collision.check(enemy);
                 enemy.update();
             });
 
-            this._collision.check(this._star);
-            this._star.update();
+            this._collision.check(this._star);      // check if star is colliding with player
+            this.checkBulletCollision(this._star, null);    // check if star is colliding with bullet
+            this._star.update();        // update star
 
             // update bullet
             if (this._bullet.x > 0) {
@@ -141,6 +195,7 @@ module scenes {
             }
 
             this._updateScore();
+
 
             // check if life becomes 0
             if (scoreboard.getLives() < 1) {
