@@ -44,5 +44,9 @@ module objects {
             this.y = stage.mouseY;
             this._checkBounds();
         }
+        
+        public engineOff(): void {
+            this._engineSound.stop();
+        }
     }
 }

@@ -33,6 +33,9 @@ var objects;
             this.y = stage.mouseY;
             this._checkBounds();
         };
+        Player.prototype.engineOff = function () {
+            this._engineSound.stop();
+        };
         return Player;
     })(createjs.Bitmap);
     objects.Player = Player;

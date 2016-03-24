@@ -94,6 +94,12 @@ var scenes;
             this._collision.check(this._star);
             this._star.update();
             this._updateScore();
+            // check if life becomes 0
+            if (scoreboard.getLives() < 1) {
+                this._player.engineOff();
+                scene = config.Scene.MENU;
+                changeScene();
+            }
         };
         // method to update scoreboard
         Play.prototype._updateScore = function () {
