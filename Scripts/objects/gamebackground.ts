@@ -6,7 +6,7 @@ module objects {
         constructor() {
             super("Space");
 
-            this._speed.y = 5;  // space speed
+            this._speed.x = 5;  // space speed
             this._reset(-1360);
             //this._reset(0);   // right to left
         }
@@ -14,7 +14,7 @@ module objects {
 
         // PUBLIC METHODS
         public update(): void {
-            this.x += this._speed.y;      //left to right
+            this.x += this._speed.x;      //left to right
             //this.x -= this._speed.y;       // right to left
             this._checkBounds(0);
             //this._checkBounds(-1360);     // right to left

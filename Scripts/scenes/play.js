@@ -9,6 +9,7 @@
     
     Program Description: Play scene where gameplay takes action.
     Revision History: space background added - Mar 24, 2016
+                      obstacles added - Mar 24, 2016
 */
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -30,12 +31,15 @@ var scenes;
             // add space background image to the scene
             this._space = new objects.GameBackground();
             this.addChild(this._space);
+            this._obstacles = new objects.Obstacles();
+            this.addChild(this._obstacles);
             // add this scene to the global stage container
             stage.addChild(this);
         };
         // PLAY Scene updates here
         Play.prototype.update = function () {
             this._space.update();
+            this._obstacles.update();
         };
         return Play;
     })(objects.Scene);

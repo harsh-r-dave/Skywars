@@ -11,13 +11,13 @@ var objects;
         // CONSTRUCTOR ++++++++++++++++++++++++
         function GameBackground() {
             _super.call(this, "Space");
-            this._speed.y = 5; // space speed
+            this._speed.x = 5; // space speed
             this._reset(-1360);
             //this._reset(0);   // right to left
         }
         // PUBLIC METHODS
         GameBackground.prototype.update = function () {
-            this.x += this._speed.y; //left to right
+            this.x += this._speed.x; //left to right
             //this.x -= this._speed.y;       // right to left
             this._checkBounds(0);
             //this._checkBounds(-1360);     // right to left

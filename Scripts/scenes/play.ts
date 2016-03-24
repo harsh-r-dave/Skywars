@@ -9,6 +9,7 @@
     
     Program Description: Play scene where gameplay takes action.
     Revision History: space background added - Mar 24, 2016
+                      obstacles added - Mar 24, 2016
 */
 
 // PLAY SCENE
@@ -16,6 +17,7 @@ module scenes {
     export class Play extends objects.Scene {
         //PRIVATE INSTANCE VARIABLES ++++++++++++
        private _space: objects.GameBackground;
+       private _obstacles: objects.Obstacles;
         
         // CONSTRUCTOR ++++++++++++++++++++++
         constructor() {
@@ -29,6 +31,9 @@ module scenes {
             // add space background image to the scene
             this._space = new objects.GameBackground();
             this.addChild(this._space);
+            
+            this._obstacles = new objects.Obstacles();
+            this.addChild(this._obstacles);
 
             // add this scene to the global stage container
             stage.addChild(this);
@@ -37,6 +42,7 @@ module scenes {
         // PLAY Scene updates here
         public update(): void {
             this._space.update();
+            this._obstacles.update();
         }
         
         

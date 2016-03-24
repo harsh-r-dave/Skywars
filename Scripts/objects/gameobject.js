@@ -1,3 +1,15 @@
+/*
+    Source File: COMP397-W2016-MailPilotDemo-master/ gameobject.ts
+    Author's name: Tom Tsiliopoulos, Professor, Centennial College
+    Modified by: Harsh Dave, Student, Centennial College
+    
+    Date First Modified: Mar 24, 2016
+    Date Last  Modified: Mar 24, 2016
+    Last Modified by: Harsh Dave, student, Centennial College
+    
+    Program Description: super class for game objects.
+    Revision History: updated variable values for scrolling
+*/
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -12,6 +24,12 @@ var objects;
         function GameObject(bitmapString) {
             _super.call(this, assets.getResult(bitmapString));
             this._speed = new createjs.Point(0, 0);
+            this._width = this.getBounds().width;
+            this._height = this.getBounds().height;
+            this._topBounds = 0;
+            this._bottomBounds = config.Screen.HEIGHT - this._height;
+            this._leftBounds = -this._width;
+            this._rightBounds = config.Screen.WIDTH + this._width;
         }
         // PRIVATE METHODS ++++++++++++++++++++++++++++++
         GameObject.prototype._checkBounds = function (value) {
