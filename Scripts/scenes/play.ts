@@ -13,6 +13,7 @@
                       enemy added - Mar 24, 2016
                       bullet colider added - Mar 24, 2016
                       minor changes made - Mar 25, 2016
+                      minor changes made - Mar 26, 2016
 */
 
 // PLAY SCENE
@@ -140,20 +141,20 @@ module scenes {
                 if (object.getIsCollidingBullet() == false) {
                     switch (object.name) {
                         case "obstacles":
-                            this._bullet.x = 0;             // send bullet out of the screen to reset it
+                            this._bullet.setBulletPoisition(this._player.x, this._player.y);    // reset the bullet
                             break;
                         case "enemy":
                             object.visible = false;         // make enemy invisible
                             this._enemy[index].x = 650;     // put enemy out of the scene to prevent gameplay error
                             scoreboard.addScore(100);       // update scoreboard
                             createjs.Sound.play("BulletCrash", 0, 0, 0, 0, 0.5, 0);
-                            this._bullet.x = 0;             // send bullet out of the screen to reset it
+                            this._bullet.setBulletPoisition(this._player.x, this._player.y);    // reset the bullet
                             break;
                         case "star":
                             object.visible = false;         // make star invisible
                             this._star.x = 650;             // put star out of the scene to prevent gameplay error
                             createjs.Sound.play("BulletCrash", 0, 0, 0, 0, 0.5, 0);
-                            this._bullet.x = 0;             // send bullet out of the screen to reset it
+                            this._bullet.setBulletPoisition(this._player.x, this._player.y);    // reset the bullet
                             break;
                     }
                     object.setIsCollidingBullet(true);
@@ -209,7 +210,7 @@ module scenes {
             // check if life becomes 0
             if (scoreboard.getLives() < 1) {
                 this._player.engineOff();
-                scene = config.Scene.MENU;
+                scene = config.Scene.END;
                 changeScene();
             }
         }

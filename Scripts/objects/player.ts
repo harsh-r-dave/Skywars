@@ -1,3 +1,16 @@
+/* 
+    Source File: COMP397-W2016-MailPilotDemo-master/ player.ts
+    Author's name: Tom Tsiliopoulos, Professor, Centennial College
+    Modified by: Harsh Dave, Student, Centennial College
+    
+    Date First Modified: Mar 24, 2016
+    Date Last  Modified: Mar 24, 2016
+    Last Modified by: Harsh Dave, student, Centennial College
+    
+    Program Description: super class for game objects.
+    Revision History: updated variables and values - Mar 24, 2016
+*/
+
 module objects {
     // PLAYER CLASS ++++++++++++++++++++++++++++++
     export class Player extends createjs.Bitmap {

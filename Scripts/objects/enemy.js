@@ -5,7 +5,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var objects;
 (function (objects) {
-    // OBSTACLES CLASS ++++++++++++++++++++++++++++++++++++
+    // ENEMY CLASS ++++++++++++++++++++++++++++++++++++
     var Enemy = (function (_super) {
         __extends(Enemy, _super);
         // PRIVATE INSTANCE VARIABLES +++++++++++++++++
@@ -17,12 +17,12 @@ var objects;
         }
         // PRIVATE METHODS ++++++++++++++++++++++++++++
         Enemy.prototype._checkBounds = function (value) {
-            // check to see if the obstacles met the reset criteria
+            // check to see if the enemy met the reset criteria
             if (this.x >= value) {
                 this._reset(this._leftBounds);
             }
         };
-        // reset the obstacles offscreen
+        // reset the enemy offscreen
         Enemy.prototype._reset = function (value) {
             this.visible = true;
             // behaviour of objects
@@ -33,7 +33,7 @@ var objects;
         };
         // PUBLIC METHODS ++++++++++++++++++++++++++++++
         Enemy.prototype.update = function () {
-            // scroll the obstacles
+            // scroll the enemy
             this.x += this._speed.x;
             this._checkBounds(this._rightBounds);
         };

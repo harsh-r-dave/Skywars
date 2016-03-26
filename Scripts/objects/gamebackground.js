@@ -17,9 +17,9 @@ var objects;
         }
         // PUBLIC METHODS
         GameBackground.prototype.update = function () {
-            this.x += this._speed.x; //left to right
-            //this.x -= this._speed.y;       // right to left
-            this._checkBounds(0);
+            this.x += this._speed.x; // left to right
+            //this.x -= this._speed.y;      // right to left
+            this._checkBounds(0); // left to right
             //this._checkBounds(-1360);     // right to left
         };
         //PRIVATE METHODS
@@ -28,12 +28,12 @@ var objects;
             this.x = value; // left to right   -1360
             //this.x = value;       // right to left
         };
-        // check boundaries of road
+        // check boundaries of space
         GameBackground.prototype._checkBounds = function (value) {
             if (this.x >= value) {
                 this._reset(-1360);
             }
-            /*if(this.x <= value)      // right to left
+            /*if(this.x <= value)       // right to left
             {
                 this._reset(0);
             }*/

@@ -4,11 +4,13 @@
     Modified by: Harsh Dave, Student, Centennial College
     
     Date First Modified: Mar 24, 2016
-    Date Last  Modified: Mar 24, 2016
+    Date Last  Modified: Mar 26, 2016
     Last Modified by: Harsh Dave, student, Centennial College
     
     Program Description: Contains assets and other required features needed during game play.
-    Revision History: updated assets
+    Revision History: updated assets - Mar 24, 2016
+                      instructions scene added - Mar 25, 2016
+                      assets added - Mar 26, 2016
 */
 /// <reference path = "_reference.ts" />
 // global variables
@@ -23,6 +25,7 @@ var scoreboard;
 var menu;
 var play;
 var end;
+var help;
 var assetData = [
     // Add your Assets here
     { id: "Space", src: "../../Assets/images/background.png" },
@@ -48,7 +51,14 @@ var assetData = [
     { id: "Collect", src: "../../Assets/audio/Collect.mp3" },
     { id: "Crash", src: "../../Assets/audio/Crash.mp3" },
     { id: "BulletCrash", src: "../../Assets/audio/BulletCrash.mp3" },
-    { id: "StartButton", src: "../../Assets/images/StartButton.png" }
+    { id: "Instructions", src: "../../Assets/images/instructions.jpg" },
+    { id: "PlayNow", src: "../../Assets/images/playNow.png" },
+    { id: "Help", src: "../../Assets/images/help.png" },
+    { id: "GotIt", src: "../../Assets/images/gotit.png" },
+    { id: "Up", src: "../../Assets/images/up.png" },
+    { id: "Down", src: "../../Assets/images/down.png" },
+    { id: "PlayAgain", src: "../../Assets/images/playAgain.png" },
+    { id: "Home", src: "../../Assets/images/home.png" } // end scene - Home button
 ];
 function preload() {
     assets = new createjs.LoadQueue();
@@ -105,6 +115,13 @@ function changeScene() {
             menu = new scenes.Menu();
             currentScene = menu;
             console.log("Starting MENU Scene");
+            break;
+        case config.Scene.HELP:
+            // show the HELP scene
+            stage.removeAllChildren();
+            help = new scenes.Help();
+            currentScene = help;
+            console.log("Starting HELP Scene");
             break;
         case config.Scene.PLAY:
             // show the PLAY scene

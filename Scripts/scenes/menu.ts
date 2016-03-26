@@ -4,66 +4,88 @@
     Modified by: Harsh Dave, Student, Centennial College
     
     Date First Modified: Mar 24, 2016
-    Date Last  Modified: Mar 24, 2016
+    Date Last  Modified: Mar 26, 2016
     Last Modified by: Harsh Dave, student, Centennial College
     
     Program Description: Main menu scene
-    Revision History:
+    Revision History: updated UI - Mar 26, 2016
 */
 
 // MENU SCENE
 module scenes {
     export class Menu extends objects.Scene {
         //PRIVATE INSTANCE VARIABLES ++++++++++++
-        private _menuLabel: objects.Label;
-        private _startButton: objects.Button;
-        
+        private _gameLabel: objects.Label;
+        private _background: objects.GameBackground;
+        private _playNowButton: objects.Button;
+        private _helpButton: objects.Button;
+
         // CONSTRUCTOR ++++++++++++++++++++++
         constructor() {
             super();
         }
-        
+
         // PUBLIC METHODS +++++++++++++++++++++
-        
+
         // Start Method
         public start(): void {
-            //Add Menu Label
-            this._menuLabel = new objects.Label(
-                "MENU SCENE", "60px Consolas",
-                "#000000",
+            // Add background to the scene
+            this._background = new objects.GameBackground();
+            this.addChild(this._background);
+
+            //Add Game Label
+            this._gameLabel = new objects.Label(
+                "SkyWars", "60px Consolas",
+                "#ffff00",
                 config.Screen.CENTER_X, config.Screen.CENTER_Y, true);
-            this.addChild(this._menuLabel);
-            
-            
-            // add the Start button to the MENU scene
-            this._startButton = new objects.Button(
-                "StartButton",
-                config.Screen.CENTER_X,
-                config.Screen.CENTER_Y + 180, true);
-            this.addChild(this._startButton);
-            
-            // Start Button event listener
-            this._startButton.on("click", this._startButtonClick, this);
-            
-            
+            this.addChild(this._gameLabel);
+
+
+            // add the PlayNow button to the MENU scene
+            this._playNowButton = new objects.Button(
+                "PlayNow",
+                config.Screen.CENTER_X - 150,
+                config.Screen.CENTER_Y + 180, false);
+            this.addChild(this._playNowButton);
+
+            // PlayNow Button event listener
+            this._playNowButton.on("click", this._playNowButtonClick, this);
+
+            // add the Help button to the MENU scene
+            this._helpButton = new objects.Button(
+                "Help",
+                config.Screen.CENTER_X + 50,
+                config.Screen.CENTER_Y + 180, false);
+            this.addChild(this._helpButton);
+
+            // Help Button event listener
+            this._helpButton.on("click", this._helpButtonClick, this);
+
+
             // add this scene to the global stage container
             stage.addChild(this);
         }
 
-        // INTRO Scene updates here
+        // MENU Scene updates here
         public update(): void {
-
+            this._background.update();
         }
-        
-        
+
+
         //EVENT HANDLERS ++++++++++++++++++++
-        
-        // LEFT_CAVE Button click event handler
-        private _startButtonClick(event: createjs.MouseEvent) {
-            // Switch to the LEFT_CAVE Scene
+
+        // PLAY_NOW Button click event handler
+        private _playNowButtonClick(event: createjs.MouseEvent) {
+            // Switch to the PLAY Scene
             scene = config.Scene.PLAY;
             changeScene();
         }
-
+        
+        // HELP Button click event handler
+        private _helpButtonClick(event: createjs.MouseEvent) {
+            // Switch to the HELP Scene
+            scene = config.Scene.HELP;
+            changeScene();
+        }
     }
 }

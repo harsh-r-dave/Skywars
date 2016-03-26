@@ -1,3 +1,16 @@
+/* 
+    Source File: COMP397-W2016-MailPilotDemo-master/ scoreboard.ts
+    Author's name: Tom Tsiliopoulos, Professor, Centennial College
+    Modified by: Harsh Dave, Student, Centennial College
+    
+    Date First Modified: Mar 24, 2016
+    Date Last  Modified: Mar 24, 2016
+    Last Modified by: Harsh Dave, student, Centennial College
+    
+    Program Description: Checks of two objects collide.
+    Revision History:
+*/
+
 module managers {
     export class Scoreboard {
         // PRIVATE INSTANCE VARIABLES
@@ -11,6 +24,7 @@ module managers {
         public getScore(): number {
             return this._score;
         }
+        
         public setLives(value: number) {
             this._lives = value;
         }
@@ -21,6 +35,7 @@ module managers {
         public addScore(score: number): void {
             this._score += score;
         }
+        
         public addLives(life: number): void {
             this._lives += life;
         }

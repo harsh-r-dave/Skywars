@@ -1,5 +1,5 @@
 module objects {
-    // OBSTACLES CLASS ++++++++++++++++++++++++++++++++++++
+    // ENEMY CLASS ++++++++++++++++++++++++++++++++++++
     export class Enemy extends objects.GameObject {
         // PRIVATE INSTANCE VARIABLES +++++++++++++++++
 
@@ -13,13 +13,13 @@ module objects {
 
         // PRIVATE METHODS ++++++++++++++++++++++++++++
         protected _checkBounds(value: number): void {
-            // check to see if the obstacles met the reset criteria
+            // check to see if the enemy met the reset criteria
             if (this.x >= value) {
                 this._reset(this._leftBounds);
             }
         }
 
-        // reset the obstacles offscreen
+        // reset the enemy offscreen
         protected _reset(value: number): void {
             this.visible = true;
             // behaviour of objects
@@ -33,7 +33,7 @@ module objects {
 
         // PUBLIC METHODS ++++++++++++++++++++++++++++++
         public update(): void {
-            // scroll the obstacles
+            // scroll the enemy
             this.x += this._speed.x;
             this._checkBounds(this._rightBounds);
         }
