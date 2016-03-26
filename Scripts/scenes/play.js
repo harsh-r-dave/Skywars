@@ -32,10 +32,8 @@ var scenes;
         // Start Method
         Play.prototype.start = function () {
             // reset scoreboard
-            scoreboard.setLives(5);
+            scoreboard.setLives(100);
             scoreboard.setScore(0);
-            console.log("Score: " + scoreboard.getScore());
-            console.log("Lives: " + scoreboard.getLives());
             // instantiate obstacles collection
             this._obstaclesCollection = new Array("Planet1", "Planet2", "Planet3", "Planet4", "Stone1", "Stone2");
             // set obstacles count
@@ -80,7 +78,7 @@ var scenes;
             this._scoreLabel = new objects.Label("Score: ", "40px Consolas", "#FFFF00", 5, 5, false);
             this.addChild(this._scoreLabel);
             // Lives Label
-            this._livesLabel = new objects.Label("Lives: ", "40px Consolas", "#FFFF00", 350, 5, false);
+            this._livesLabel = new objects.Label("Health: ", "40px Consolas", "#FFFF00", 350, 5, false);
             this.addChild(this._livesLabel);
             // add this scene to the global stage container
             stage.addChild(this);
@@ -106,6 +104,7 @@ var scenes;
                 if (object.getIsCollidingBullet() == false) {
                     switch (object.name) {
                         case "obstacles":
+                            this._bullet.x = 0; // send bullet out of the screen to reset it
                             break;
                         case "enemy":
                             object.visible = false; // make enemy invisible
@@ -133,6 +132,10 @@ var scenes;
             var _this = this;
             this._space.update(); // update background
             this._player.update(); // update player
+            // check if obstacle is colliding with bullet
+            for (var obstacle = 0; obstacle < this._obstaclesCount; obstacle++) {
+                this.checkBulletCollision(this._obstacles[obstacle], obstacle);
+            }
             // check if obstacles are colliding with player and update it
             this._obstacles.forEach(function (obstacle) {
                 _this._collision.check(obstacle);
@@ -168,7 +171,7 @@ var scenes;
         // method to update scoreboard
         Play.prototype._updateScore = function () {
             this._scoreLabel.text = "Score: " + scoreboard.getScore();
-            this._livesLabel.text = "Lives: " + scoreboard.getLives();
+            this._livesLabel.text = "Health: " + scoreboard.getLives() + "%";
         };
         return Play;
     })(objects.Scene);

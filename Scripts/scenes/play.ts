@@ -48,10 +48,8 @@ module scenes {
         // Start Method
         public start(): void {
             // reset scoreboard
-            scoreboard.setLives(5);
+            scoreboard.setLives(100);
             scoreboard.setScore(0);
-            console.log("Score: " + scoreboard.getScore());
-            console.log("Lives: " + scoreboard.getLives());
 
             // instantiate obstacles collection
             this._obstaclesCollection = new Array("Planet1", "Planet2", "Planet3", "Planet4", "Stone1", "Stone2");
@@ -109,7 +107,7 @@ module scenes {
             this.addChild(this._scoreLabel);
 
             // Lives Label
-            this._livesLabel = new objects.Label("Lives: ", "40px Consolas", "#FFFF00", 350, 5, false);
+            this._livesLabel = new objects.Label("Health: ", "40px Consolas", "#FFFF00", 350, 5, false);
             this.addChild(this._livesLabel);
 
             // add this scene to the global stage container
@@ -142,6 +140,7 @@ module scenes {
                 if (object.getIsCollidingBullet() == false) {
                     switch (object.name) {
                         case "obstacles":
+                            this._bullet.x = 0;             // send bullet out of the screen to reset it
                             break;
                         case "enemy":
                             object.visible = false;         // make enemy invisible
@@ -169,6 +168,11 @@ module scenes {
         public update(): void {
             this._space.update();       // update background
             this._player.update();      // update player
+
+            // check if obstacle is colliding with bullet
+            for (var obstacle = 0; obstacle < this._obstaclesCount; obstacle++) {
+                this.checkBulletCollision(this._obstacles[obstacle], obstacle);
+            }
             
             // check if obstacles are colliding with player and update it
             this._obstacles.forEach(obstacle => {
@@ -180,7 +184,7 @@ module scenes {
             for (var enemy = 0; enemy < this._enemyCount; enemy++) {
                 this.checkBulletCollision(this._enemy[enemy], enemy);
             }
-            
+
             // check if enemy is colliding with player and update it
             this._enemy.forEach(enemy => {
                 this._collision.check(enemy);
@@ -213,7 +217,7 @@ module scenes {
         // method to update scoreboard
         private _updateScore(): void {
             this._scoreLabel.text = "Score: " + scoreboard.getScore();
-            this._livesLabel.text = "Lives: " + scoreboard.getLives();
+            this._livesLabel.text = "Health: " + scoreboard.getLives() + "%";
         }
 
         //EVENT HANDLERS ++++++++++++++++++++

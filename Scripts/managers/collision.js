@@ -38,17 +38,34 @@ var managers;
                         case "obstacles":
                             object.visible = false;
                             createjs.Sound.play("Crash", 0, 0, 0, 0, 0.5, 0);
-                            scoreboard.removeLives(1);
+                            if (scoreboard.getLives() == 10) {
+                                scoreboard.removeLives(5);
+                            }
+                            else {
+                                scoreboard.removeLives(10);
+                            }
                             break;
                         case "enemy":
                             object.visible = false;
                             createjs.Sound.play("Crash", 0, 0, 0, 0, 0.5, 0);
-                            scoreboard.removeLives(1);
+                            if (scoreboard.getLives() == 10) {
+                                scoreboard.removeLives(5);
+                            }
+                            else {
+                                scoreboard.removeLives(10);
+                            }
                             break;
                         case "star":
                             object.visible = false;
                             createjs.Sound.play("Collect", 0, 0, 0, 0, 0.5, 0);
-                            scoreboard.addLives(1);
+                            if (scoreboard.getLives() < 100) {
+                                if (scoreboard.getLives() == 5) {
+                                    scoreboard.addLives(5);
+                                }
+                                else {
+                                    scoreboard.addLives(10);
+                                }
+                            }
                             break;
                     }
                     object.setIsColliding(true);
