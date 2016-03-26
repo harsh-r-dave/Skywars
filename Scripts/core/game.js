@@ -47,6 +47,7 @@ var assetData = [
     { id: "Engine", src: "../../Assets/audio/Spaceship.mp3" },
     { id: "Collect", src: "../../Assets/audio/Collect.mp3" },
     { id: "Crash", src: "../../Assets/audio/Crash.mp3" },
+    { id: "BulletCrash", src: "../../Assets/audio/BulletCrash.mp3" },
     { id: "StartButton", src: "../../Assets/images/StartButton.png" }
 ];
 function preload() {

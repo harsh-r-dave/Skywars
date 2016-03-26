@@ -16,11 +16,12 @@ var objects;
             this.regY = this.height * 0.5;
             this._topBounds = this.height * 0.5;
             this._bottomBounds = config.Screen.HEIGHT - (this.height * 0.5);
+            this._bulletSpeed = 15;
         }
         // PRIVATE METHODS
         // PUBLIC METHODS
         Bullet.prototype.update = function () {
-            this.x -= 15;
+            this.x -= this._bulletSpeed;
         };
         Bullet.prototype.setBulletPoisition = function (playerX, playerY) {
             this.x = playerX;

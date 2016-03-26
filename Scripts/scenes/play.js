@@ -4,7 +4,7 @@
     Modified by: Harsh Dave, Student, Centennial College
     
     Date First Modified: Mar 24, 2016
-    Date Last  Modified: Mar 24, 2016
+    Date Last  Modified: Mar 25, 2016
     Last Modified by: Harsh Dave, student, Centennial College
     
     Program Description: Play scene where gameplay takes action.
@@ -12,6 +12,7 @@
                       obstacles added - Mar 24, 2016
                       enemy added - Mar 24, 2016
                       bullet colider added - Mar 24, 2016
+                      minor changes made - Mar 25, 2016
 */
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -108,14 +109,16 @@ var scenes;
                             break;
                         case "enemy":
                             object.visible = false; // make enemy invisible
-                            this._enemy[index].x = 650; // put enemy out of the scene
+                            this._enemy[index].x = 650; // put enemy out of the scene to prevent gameplay error
                             scoreboard.addScore(100); // update scoreboard
-                            createjs.Sound.play("Crash", 0, 0, 0, 0, 0.5, 0);
+                            createjs.Sound.play("BulletCrash", 0, 0, 0, 0, 0.5, 0);
+                            this._bullet.x = 0; // send bullet out of the screen to reset it
                             break;
                         case "star":
                             object.visible = false; // make star invisible
-                            this._star.x = 650; // put star out of the scene
-                            createjs.Sound.play("Crash", 0, 0, 0, 0, 0.5, 0);
+                            this._star.x = 650; // put star out of the scene to prevent gameplay error
+                            createjs.Sound.play("BulletCrash", 0, 0, 0, 0, 0.5, 0);
+                            this._bullet.x = 0; // send bullet out of the screen to reset it
                             break;
                     }
                     object.setIsCollidingBullet(true);

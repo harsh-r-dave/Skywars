@@ -26,7 +26,7 @@ var objects;
         Obstacles.prototype._reset = function (value) {
             this.visible = true;
             // behaviour of objects
-            this._speed.x = Math.floor(Math.random() * 5) + 2;
+            this._speed.x = Math.floor(Math.random() * 4) + 2;
             this._speed.y = Math.floor(Math.random() * 4) - 2;
             // location of objects
             this.y = Math.floor(Math.random() * this._bottomBounds);

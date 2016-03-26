@@ -4,6 +4,7 @@ module objects {
         // PRIVATE INSTANCE VARIABLES
         private _topBounds: number;
         private _bottomBounds: number;
+        private _bulletSpeed: number;
 
         // PUBLIC INSTANCE VARIABLES
         public width: number;
@@ -20,13 +21,15 @@ module objects {
 
             this._topBounds = this.height * 0.5;
             this._bottomBounds = config.Screen.HEIGHT - (this.height * 0.5);
+            
+            this._bulletSpeed = 15;
         }
 
         // PRIVATE METHODS
 
         // PUBLIC METHODS
         public update(): void {
-            this.x -= 15;
+            this.x -= this._bulletSpeed;
         }
 
         public setBulletPoisition(playerX: number, playerY: number): void {
