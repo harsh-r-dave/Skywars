@@ -27,11 +27,25 @@ var scenes;
         // PUBLIC METHODS +++++++++++++++++++++
         // Start Method
         Menu.prototype.start = function () {
+            // instantiate obstacles collection
+            this._obstaclesCollection = new Array("Planet1", "Planet2", "Planet3", "Planet4", "Stone1", "Stone2");
+            // instantiate obstacles array
+            this._obstacles = new Array();
             // Add background to the scene
             this._background = new objects.GameBackground();
             this.addChild(this._background);
+            // add obstacle graphics to the scene
+            for (var obstacle = 0; obstacle < 2; obstacle++) {
+                var randomObstacle = Math.floor(Math.random() * 6);
+                this._obstacles[obstacle] = new objects.Obstacles(this._obstaclesCollection[randomObstacle]);
+                this.addChild(this._obstacles[obstacle]);
+            }
+            // Add player to the scene
+            this._player = new objects.Player();
+            this.addChild(this._player);
+            this._player.y = 150;
             //Add Game Label
-            this._gameLabel = new objects.Label("SkyWars", "60px Consolas", "#ffff00", config.Screen.CENTER_X, config.Screen.CENTER_Y, true);
+            this._gameLabel = new objects.Label("SkyWars", "70px Frijole", "#ffff00", config.Screen.CENTER_X - 50, config.Screen.CENTER_Y, true);
             this.addChild(this._gameLabel);
             // add the PlayNow button to the MENU scene
             this._playNowButton = new objects.Button("PlayNow", config.Screen.CENTER_X - 150, config.Screen.CENTER_Y + 180, false);
@@ -49,6 +63,10 @@ var scenes;
         // MENU Scene updates here
         Menu.prototype.update = function () {
             this._background.update();
+            // obstacles update
+            this._obstacles.forEach(function (obstacle) {
+                obstacle.update();
+            });
         };
         //EVENT HANDLERS ++++++++++++++++++++
         // PLAY_NOW Button click event handler

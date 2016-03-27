@@ -76,10 +76,10 @@ var scenes;
             // add collision manager to the scene
             this._collision = new managers.Collision(this._player);
             // Score Label
-            this._scoreLabel = new objects.Label("Score: ", "40px Consolas", "#FFFF00", 5, 5, false);
+            this._scoreLabel = new objects.Label("Score: ", "30px Frijole", "#FFFF00", 5, 5, false);
             this.addChild(this._scoreLabel);
             // Lives Label
-            this._livesLabel = new objects.Label("Health: ", "40px Consolas", "#FFFF00", 350, 5, false);
+            this._livesLabel = new objects.Label("Health: ", "30px Frijole", "#FFFF00", 350, 5, false);
             this.addChild(this._livesLabel);
             // add this scene to the global stage container
             stage.addChild(this);

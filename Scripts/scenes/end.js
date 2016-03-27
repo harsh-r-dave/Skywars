@@ -27,11 +27,21 @@ var scenes;
         // PUBLIC METHODS ++++++++++++++++++++
         // Start Method
         End.prototype.start = function () {
+            // instantiate obstacles collection
+            this._obstaclesCollection = new Array("Planet1", "Planet2", "Planet3", "Planet4", "Stone1", "Stone2");
+            // instantiate obstacles array
+            this._obstacles = new Array();
             // Add background to the scene
             this._background = new objects.GameBackground();
             this.addChild(this._background);
+            // add obstacle graphics to the scene
+            for (var obstacle = 0; obstacle < 2; obstacle++) {
+                var randomObstacle = Math.floor(Math.random() * 6);
+                this._obstacles[obstacle] = new objects.Obstacles(this._obstaclesCollection[randomObstacle]);
+                this.addChild(this._obstacles[obstacle]);
+            }
             //Add SCORE Label
-            this._scoreLabel = new objects.Label("SCORE: " + scoreboard.getScore(), "60px Consolas", "#ffff00", config.Screen.CENTER_X, config.Screen.CENTER_Y, true);
+            this._scoreLabel = new objects.Label("SCORE: " + scoreboard.getScore(), "50px Frijole", "#ffff00", config.Screen.CENTER_X, config.Screen.CENTER_Y, true);
             this.addChild(this._scoreLabel);
             // add the PlayAgain button to the END scene
             this._playAgainButton = new objects.Button("PlayAgain", config.Screen.CENTER_X - 150, config.Screen.CENTER_Y + 180, false);
@@ -49,6 +59,10 @@ var scenes;
         // END Scene updates here
         End.prototype.update = function () {
             this._background.update();
+            // obstacles update
+            this._obstacles.forEach(function (obstacle) {
+                obstacle.update();
+            });
         };
         //EVENT HANDLERS ++++++++++++++++++++
         // PLAY_AGAIN Button click event handler

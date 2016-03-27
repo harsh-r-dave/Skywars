@@ -19,6 +19,8 @@ module scenes {
         private _scoreLabel: objects.Label;
         private _playAgainButton: objects.Button;
         private _homeButton: objects.Button;
+        private _obstacles: objects.Obstacles[];
+        private _obstaclesCollection: string[];
 
         // CONSTRUCTOR ++++++++++++++++++++++
         constructor() {
@@ -30,13 +32,26 @@ module scenes {
 
         // Start Method
         public start(): void {
+            // instantiate obstacles collection
+            this._obstaclesCollection = new Array("Planet1", "Planet2", "Planet3", "Planet4", "Stone1", "Stone2");
+            // instantiate obstacles array
+            this._obstacles = new Array<objects.Obstacles>();
+            
             // Add background to the scene
             this._background = new objects.GameBackground();
             this.addChild(this._background);
+            
+            // add obstacle graphics to the scene
+            for (var obstacle: number = 0; obstacle < 2; obstacle++) {
+                var randomObstacle = Math.floor(Math.random() * 6);
+
+                this._obstacles[obstacle] = new objects.Obstacles(this._obstaclesCollection[randomObstacle]);
+                this.addChild(this._obstacles[obstacle]);
+            }
 
             //Add SCORE Label
             this._scoreLabel = new objects.Label(
-                "SCORE: " + scoreboard.getScore(), "60px Consolas",
+                "SCORE: " + scoreboard.getScore(), "50px Frijole",
                 "#ffff00",
                 config.Screen.CENTER_X, config.Screen.CENTER_Y, true);
             this.addChild(this._scoreLabel);
@@ -69,6 +84,11 @@ module scenes {
         // END Scene updates here
         public update(): void {
             this._background.update();
+            
+            // obstacles update
+            this._obstacles.forEach(obstacle => {
+                obstacle.update();
+            });
         }
 
 
