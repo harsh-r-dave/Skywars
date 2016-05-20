@@ -11,6 +11,7 @@
     Revision History: updated assets - Mar 24, 2016
                       instructions scene added - Mar 25, 2016
                       assets added - Mar 26, 2016
+                      loading status added - May 20, 2016
 */
 /// <reference path = "_reference.ts" />
 // global variables
@@ -20,6 +21,7 @@ var stage;
 var stats;
 var currentScene;
 var scene;
+var percentLoaded;
 var scoreboard;
 // Game Scenes
 var menu;
@@ -63,10 +65,17 @@ var assetData = [
 function preload() {
     assets = new createjs.LoadQueue();
     assets.installPlugin(createjs.Sound);
+    assets.addEventListener("progress", handleProgress);
     assets.on("complete", init, this);
     assets.loadManifest(assetData);
 }
+function handleProgress(event) {
+    percentLoaded = event.loaded;
+    document.getElementById("load").innerHTML = "Loading. . ." + (Math.floor(percentLoaded * 100)).toString() + "%";
+}
 function init() {
+    // remove loading status
+    document.getElementById("load").remove();
     // create a reference the HTML canvas Element
     canvas = document.getElementById("canvas");
     // create our main display list container
